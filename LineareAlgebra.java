@@ -133,7 +133,7 @@ public class LineareAlgebra
             for (int i = 0; i < matrix.length; i++)
             {
                 double [][] submatrix = createSubmatrix(matrix,0,i);
-                det += matrix[0][i] * Math.pow(-1,i+1) * determinante(submatrix);
+                det += matrix[0][i] * Math.pow(-1,i+1+1) * determinante(submatrix);
             }
         }
         return det;
