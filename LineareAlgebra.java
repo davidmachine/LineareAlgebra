@@ -1,3 +1,4 @@
+// Copyright (c) David Schäfer 2023
 import java.util.*;
 
 public class LineareAlgebra 
