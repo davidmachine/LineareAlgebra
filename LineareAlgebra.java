@@ -42,7 +42,7 @@ public class LineareAlgebra
         {
             for (int j = 0; j < matrix[i].length; j++)
             {
-                System.out.printf("%-3.3f    ", matrix[i][j]);
+                System.out.printf("%11.3f    ", matrix[i][j]);
             }
 
             System.out.println("\n");
