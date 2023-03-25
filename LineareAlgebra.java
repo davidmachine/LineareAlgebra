@@ -108,7 +108,7 @@ public class LineareAlgebra
         return submatrix;
     }
 
-    public static double determinante(double[][] matrix)
+    public static double determinante(double[][] matrix)                    //Determinante berechnen
     {
         double det = 0;
 
