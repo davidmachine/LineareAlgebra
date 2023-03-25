@@ -75,7 +75,7 @@ public class LineareAlgebra
 
     public static double[][] createSubmatrix(double[][] matrix, int i, int j)                   //Submatrix erstellen zur Berechnung der Unterdeterminanten
     {
-        double [][] submatrix = new double [matrix.length][matrix[i].length];
+        double [][] submatrix = new double [matrix.length-1][matrix[i].length-1];
 
         for (int k = 0; k < submatrix.length; k++)
         {
