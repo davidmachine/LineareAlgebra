@@ -73,7 +73,7 @@ public class LineareAlgebra
         return transponierte_matrix;
     }
 
-    public static double[][] submatrix(double[][] matrix, int i, int j)
+    public static double[][] createSubmatrix(double[][] matrix, int i, int j)                   //Submatrix erstellen zur Berechnung der Unterdeterminanten
     {
         double [][] submatrix = new double [matrix.length][matrix[i].length];
 
@@ -132,8 +132,7 @@ public class LineareAlgebra
         {
             for (int i = 0; i < matrix.length; i++)
             {
-                double [][] submatrix = new double[rang-1][rang-1];
-                submatrix = submatrix(matrix,0,i);
+                double [][] submatrix = createSubmatrix(matrix,0,i);
                 det += matrix[0][i] * Math.pow(-1,i+1) * determinante(submatrix);
             }
         }
