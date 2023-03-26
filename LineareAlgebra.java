@@ -157,8 +157,7 @@ public class LineareAlgebra
 
     public static double[][] createAdjunkte(double[][] matrix)                                                      //Berechnung der Adjunkten Matrix
     {
-        double[][] kofaktormatrix, adjunkte = new double[matrix.length][matrix[0].length];
-        kofaktormatrix = Null;
+        double[][] kofaktormatrix = new double[matrix.length][matrix[0].length];
 
         for (int i = 0; i < matrix.length; i++)                                                                     //Berechnung der Kofaktormatrix
         {
@@ -182,12 +181,11 @@ public class LineareAlgebra
         if (det == 0)
         {
             System.out.println("Fehler! Matrix nicht invertierbar");
-            return Null;
+            return matrix;      //Es ist ein bisschen unglueklich, dass im Falle der nicht Invertierbarkeit die Matrix unveraendert zurueckgegeben wird
         }
-        if (det != 0)
+        else
         {
             invertierte_matrix = skalarMalMatrix((1.0/determinante(matrix)), createAdjunkte(matrix));
-
             return invertierte_matrix;
         }
         
