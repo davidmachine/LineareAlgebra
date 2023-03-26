@@ -157,7 +157,24 @@ public class LineareAlgebra
         return det;
     }
 
-    /*
+    public static double[][] createAdjunkte(double[][] matrix)                                                      //Berechnung der Adjunkten Matrix
+    {
+        double[][] kofaktormatrix, adjunkte = new double[matrix.length][matrix[0].length];
+        kofaktormatrix = Null;
+
+        for (int i = 0; i < matrix.length; i++)                                                                     //Berechnung der Kofaktormatrix
+        {
+            for (int j = 0; j < matrix[i].length; j++)
+            {
+                kofaktormatrix[i][j] = Math.pow(-1,i+j+2) * determinante(createSubmatrix(matrix, i, j));
+            }
+        }
+
+        adjunkte = matrixTransponieren(kofaktormatrix);                                                         //Berechnung der Adjunkte, durch das Invertieren der Kofaktormatrix
+
+        return adjunkte;
+    } 
+
     public static double[][] matrixInvertieren(double[][] matrix)                                       //Matrix invertieren
     {
         double[][] invertierte_matrix = new double[matrix.length][matrix[0].length];
