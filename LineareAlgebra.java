@@ -167,7 +167,7 @@ public class LineareAlgebra
             }
         }
 
-        adjunkte = matrixTransponieren(kofaktormatrix);                                                         //Berechnung der Adjunkte, durch das Invertieren der Kofaktormatrix
+        double[][] adjunkte = matrixTransponieren(kofaktormatrix);                                                         //Berechnung der Adjunkte, durch das Invertieren der Kofaktormatrix
 
         return adjunkte;
     } 
