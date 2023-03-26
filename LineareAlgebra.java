@@ -61,6 +61,21 @@ public class LineareAlgebra
         */
     }
 
+    public static double[][] skalarMalMatrix(double skalar, double[][] matrix)                     //Skalare Multiplikation einer Matrix
+    {
+        double[][] ergebnisMatrix = new double[matrix.length][matrix[0].length];
+
+        for (int i = 0; i < matrix.length; i++)
+        {
+            for (int j = 0; j < matrix[i].length; j++)
+            {
+                ergebnisMatrix[i][j] = skalar * matrix[i][j];
+            }
+        }
+
+        return ergebnisMatrix;
+    }
+
     public static double[][] matrixTransponieren(double[][] matrix)                                  //Matrix transponieren
     {
         double[][] transponierte_matrix = new double[matrix.length][matrix[0].length];
