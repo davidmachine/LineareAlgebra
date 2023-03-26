@@ -179,6 +179,19 @@ public class LineareAlgebra
     {
         double[][] invertierte_matrix = new double[matrix.length][matrix[0].length];
 
+        double det = determinante(matrix);
+
+        if (det == 0)
+        {
+            System.out.println("Fehler! Matrix nicht invertierbar");
+            return Null;
+        }
+        if (det != 0)
+        {
+            invertierte_matrix = skalarMalMatrix((1.0/determinante(matrix)), createAdjunkte(matrix));
+
+            return invertierte_matrix;
+        }
+        
     }
-    */
 }
