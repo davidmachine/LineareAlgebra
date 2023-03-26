@@ -9,11 +9,9 @@ public class LineareAlgebra
 
         double[][] A = matrixEinlesen();
 
-        double det = determinante(A);
-
-        System.out.println(det);
-
-        matrixAusgeben(A);
+        double[][] inverse = matrixInvertieren(A);
+        
+        matrixAusgeben(inverse);
     }
 
     public static double[][] matrixEinlesen()                                                       //Matrix einlesen
