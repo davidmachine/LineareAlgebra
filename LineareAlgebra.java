@@ -1,4 +1,6 @@
 // Copyright (c) David Schaefer 2023
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class LineareAlgebra 
@@ -35,6 +37,40 @@ public class LineareAlgebra
         sc.close();
 
         return matrix;
+    }
+
+    public static double[][][] matrixVonTxt(final Scanner scanner)                             //Matrizen werden von einer Textdatei eingelesen
+    {                                                                                          //Die erste Ziffer gibt die Anzahl an Matrizen an
+        int h = 0;                                                                             //Die zweite Ziffer gibt den Rang der ersten Matrix an, die dann in der Form:
+        boolean matrixEingelesen = true;                                                       //a11,a12,...,a1n,a21,...,a2n,...,amn als einzelne Eintraege pro Splate da steht
+        int anzahlMatrizen = scanner.nextInt();                                                //Nach Rang*Rang vielen Eintraegen gibt die naeschste Ziffer den Rang der naechsten Matrix an
+        double[][][] ausgabe = new double[anzahlMatrizen][][];                                 //Es wiederholt sich also von hier an
+
+        while (scanner.hasNextDouble() && matrixEingelesen == true)
+        {
+            int rang = scanner.nextInt();
+            ausgabe[h] = new double[rang][rang];
+
+            for (int i = 0; i < rang; i++)
+            {
+                for (int j = 0; j < rang; j++)
+                {
+                    if (scanner.hasNextDouble())
+                    {
+                        ausgabe[h][i][j] = scanner.nextDouble();
+                    }
+                    else
+                    {
+                        System.out.println("Fehler! Datei input.txt ist falsch formatiert");
+                        ausgabe[h][i][j] = 0;
+                    }
+                }
+            }
+
+            h += 1;
+        }
+
+        return ausgabe;
     }
 
     public static void matrixAusgeben(double[][] matrix)                                             //Matrix ausgeben
