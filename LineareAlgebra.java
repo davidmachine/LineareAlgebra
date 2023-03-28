@@ -85,14 +85,7 @@ public class LineareAlgebra
             System.out.println("\n");
         }
 
-        /*
-        Alternative Form der Ausgabe einer Matrix
-
-        for (int i = 0; i < matrix.length; i++)
-        {
-            System.out.println(Arrays.toString(matrix[i]));            
-        }
-        */
+        System.out.println("\n");
     }
 
     public static double[][] skalarMalMatrix(double skalar, double[][] matrix)                     //Skalare Multiplikation einer Matrix
