@@ -5,15 +5,18 @@ import java.util.*;
 
 public class LineareAlgebra 
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws FileNotFoundException
     {
+        final Scanner scanner = new Scanner(new File("input.txt"));
+
         Locale.setDefault(Locale.US);
 
-        double[][] A = matrixEinlesen();
-
-        double[][] inverse = matrixInvertieren(A);
+        double[][][] A = matrixVonTxt(scanner);
         
-        matrixAusgeben(inverse);
+        for (int i = 0; i < A.length; i++)
+        {
+            matrixAusgeben(A[i]);
+        }
     }
 
     public static double[][] matrixEinlesen()                                                       //Matrix einlesen
