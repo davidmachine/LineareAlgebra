@@ -222,4 +222,72 @@ public class LineareAlgebra
         }
         
     }
+
+    public static double[] LGSeindeutigloesen(double[][] matrix)                   //Damit das LGS eindeutig loesbar ist muss die Eingabematrix quadratisch mit einer Nullzeile sein
+    {
+        double faktor = 0;
+        double faktor2 = 0;
+
+        for (int i = 0; i < matrix.length; i++)                                    //stritke obere Dreiecksmatrix
+        {
+            faktor = matrix[i][i];
+
+            if (faktor != 0)
+            {
+                for (int j = 0; j < matrix.length; j++)
+                {
+                    faktor2 = matrix[j][i];
+
+                    if (i != j && faktor2 != 0)
+                    {
+                        for (int k = 0; k < matrix.length; k++)
+                        {
+                            matrix[j][k] = faktor * matrix[j][k] - faktor2 * matrix[i][k];
+                        }
+                    }
+                }
+            }
+
+            else
+            {
+                if (i < matrix.length-1)                                            //Zeilen vertauschen, falls auf der Hauptdiagonalen eine 0 steht
+                {
+                    double temp;
+                
+                    for(int j = 0; j < matrix.length; j++)
+                    {
+                        temp = matrix[i][j];
+                        matrix[i][j] = matrix[i+1][j];
+                        matrix[i+1][j] = temp;
+                    }
+
+                    i--;
+                }
+            }
+        }
+
+        for (int i = 0; i < matrix.length; i++)                                   //Nur auf der Hauptdiagonalen Eintraege
+        {
+            faktor = matrix[i][i];
+
+            if (faktor != 0)
+            {
+                for (int j = 0; j < matrix.length; j++)
+                {
+                    matrix[i][j] = matrix[i][j] / faktor;
+                }
+            }
+        }
+
+        matrixAusgeben(matrix);
+
+        double[] loesung = new double[matrix.length];                             //Loesungsvektor erstellen
+
+        for (int i = 0; i < matrix.length; i++)
+        {
+            loesung[i] = matrix[i][matrix.length-1];
+        }
+
+        return loesung;
+    }   
 }
