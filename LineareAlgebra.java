@@ -17,6 +17,8 @@ public class LineareAlgebra
         {
             matrixAusgeben(A[i]);
         }
+
+        vektorAusgeben(LGSeindeutigloesen(A[0]));
     }
 
     public static double[][] matrixEinlesen()                                                       //Matrix einlesen
