@@ -66,6 +66,7 @@ public class LineareAlgebra
                     {
                         System.out.println("Fehler! Datei input.txt ist falsch formatiert");
                         ausgabe[h][i][j] = 0;
+                        System.exit(1);
                     }
                 }
             }
