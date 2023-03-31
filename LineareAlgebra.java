@@ -91,6 +91,16 @@ public class LineareAlgebra
         System.out.println("\n");
     }
 
+    public static void vektorAusgeben(double[] vektor)                                                 //Vektor ausgeben
+    {
+        for (int i = 0; i < vektor.length; i++)
+        {
+            System.out.printf("%11.3f    ", vektor[i]);
+        }
+
+        System.out.println("\n");
+    }
+
     public static double[][] skalarMalMatrix(double skalar, double[][] matrix)                     //Skalare Multiplikation einer Matrix
     {
         double[][] ergebnisMatrix = new double[matrix.length][matrix[0].length];
