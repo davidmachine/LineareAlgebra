@@ -11,14 +11,18 @@ public class LineareAlgebra
 
         Locale.setDefault(Locale.US);
 
-        double[][][] A = matrixVonTxt(scanner);
+        double[][][] list = matrixVonTxt(scanner);
         
-        for (int i = 0; i < A.length; i++)
+        for (int i = 0; i < list.length; i++)
         {
-            matrixAusgeben(A[i]);
+            matrixAusgeben(list[i]);
         }
 
-        vektorAusgeben(LGSeindeutigloesen(A[0]));
+        matrixAusgeben(list[0]);
+
+        Matrix A = new Matrix(list[0]);     //throws NullPointerException because "this.matrix" is null
+
+        System.out.println("det: " + A.determinant());
     }
 
     public static double[][] matrixEinlesen()                                                       //Matrix einlesen
