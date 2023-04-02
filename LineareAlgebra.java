@@ -119,6 +119,21 @@ public class LineareAlgebra
         return ergebnisMatrix;
     }
 
+    public static double[][] matrixAddieren(double[][] matrix, double[][] matrix2)                  //Matrix Addition
+    {
+        double[][] ergebnis = new double[matrix.length][matrix[0].length];
+
+        for (int i = 0; i < matrix.length; i++)
+        {
+            for (int j = 0; j < matrix[i].length; j++)
+            {
+                ergebnis[i][j] = matrix[i][j] + matrix[i][j];
+            }
+        }
+
+        return ergebnis;
+    }
+
     public static double[][] matrixTransponieren(double[][] matrix)                                  //Matrix transponieren
     {
         double[][] transponierte_matrix = new double[matrix.length][matrix[0].length];
