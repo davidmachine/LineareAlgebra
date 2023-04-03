@@ -18,11 +18,17 @@ public class LineareAlgebra
             matrixAusgeben(list[i]);
         }
 
-        matrixAusgeben(list[0]);
-
-        Matrix A = new Matrix(list[0]);     //throws NullPointerException because "this.matrix" is null
+        Matrix A = new Matrix(list[0]);
 
         System.out.println("det: " + A.determinant());
+
+        Matrix B = A.Inverse();
+
+        matrixAusgeben(B.get_m_elements());
+
+        Matrix C = B.matrixMultiplication(B);
+
+        matrixAusgeben(C.get_m_elements());
     }
 
     public static double[][] matrixEinlesen()                                                       //Matrix einlesen
