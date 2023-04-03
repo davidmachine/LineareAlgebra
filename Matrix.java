@@ -2,21 +2,25 @@
 class Matrix 
 {
 
-    private double[][] matrix;
+    private double[][] m_elements;
 
     public Matrix (int n)                               //creating a quadratic matrix of rank n
     {
         double[][] A = new double[n][n];
-        this.matrix = A;
+        this.m_elements = A;
     }
 
     public Matrix (double[][] matrix)                   //filling the matrix entry by entry with a 2D array
-    {
+    {                                                   //the setter is an easier version of this, might change later
+        this.m_elements = new double[matrix.length][];
+
         for (int i = 0; i < matrix.length; i++)
         {
+            this.m_elements[i] = new double[matrix[i].length];
+
             for (int j = 0; j < matrix[i].length; j++)
             {
-                this.matrix[i][j] = matrix[i][j];
+                this.m_elements[i][j] = matrix[i][j];
             }
         }
     }
@@ -31,12 +35,12 @@ class Matrix
             {
                 if (i == j)
                 {
-                    E.matrix[i][j] = 1;
+                    E.m_elements[i][j] = 1;
                 }
 
                 else
                 {
-                    E.matrix[i][j] = 0;
+                    E.m_elements[i][j] = 0;
                 }
             }
         }
@@ -48,9 +52,18 @@ class Matrix
     {
         boolean temp = true;
 
-        for (int i = 0; i < matrix.length; i++)
+        for (int i = 0; i < m_elements.length; i++)
         {
-            if (matrix.length != matrix[i].length)
+            if (m_elements.length != m_elements[i].length)
+            {
+                temp = false;
+            }
+        }
+
+        return temp;
+    }
+        {
+            if (m_elements[i].length != m_elements[i+1].length)
             {
                 temp = false;
             }
@@ -63,7 +76,7 @@ class Matrix
     {
         if (isQuadratic())
         {
-            return matrix.length;
+            return m_elements.length;
         }
 
         else
@@ -88,7 +101,7 @@ class Matrix
             {
                 for (int j = 0; j < n; j++)
                 {
-                    sum.matrix[i][j] = A.matrix[i][j] + B.matrix[i][j];
+                    sum.m_elements[i][j] = A.m_elements[i][j] + B.m_elements[i][j];
                 }
             }
 
@@ -98,13 +111,13 @@ class Matrix
 
     public static Matrix matrixScalar(Matrix A, double scalar)           //matrix scalar multiplication
     {
-        Matrix result = new Matrix(A.matrix);
+        Matrix result = new Matrix(A.m_elements);
 
-        for (int i = 0; i < A.matrix.length; i++)
+        for (int i = 0; i < A.m_elements.length; i++)
         {
-            for (int j = 0; j < A.matrix[i].length; j++)
+            for (int j = 0; j < A.m_elements[i].length; j++)
             {
-                result.matrix[i][j] = scalar * A.matrix[i][j];
+                result.m_elements[i][j] = scalar * A.m_elements[i][j];
             }
         }
 
@@ -113,13 +126,13 @@ class Matrix
 
     public Matrix matrixTranspose(Matrix A)                          //transposing a matrix
     {
-        Matrix AT = new Matrix(A.matrix);
+        Matrix AT = new Matrix(A.m_elements);
 
-        for (int i = 0; i < A.matrix.length; i++)
+        for (int i = 0; i < A.m_elements.length; i++)
         {
-            for (int j = 0; j < A.matrix[i].length; j++)
+            for (int j = 0; j < A.m_elements[i].length; j++)
             {
-                AT.matrix[i][j] = A.matrix[j][i];
+                AT.m_elements[i][j] = A.m_elements[j][i];
             }
         }
 
@@ -128,7 +141,7 @@ class Matrix
 
     public Matrix createSubmatrix(int i, int j)            //creating the submatrix by deleting the ith row and jth column
     {
-        double[][] submatrix = new double[matrix.length-1][matrix[i].length-1];
+        double[][] submatrix = new double[m_elements.length-1][m_elements[i].length-1];
         
         for (int k = 0; k < submatrix.length; k++)
         {
@@ -136,25 +149,25 @@ class Matrix
             {
                 if (k < i && l < j)
                 {
-                    submatrix[k][l] = matrix[k][l];
+                    submatrix[k][l] = m_elements[k][l];
                 }
 
                 else if (k >= i)
                 {
                     if (l < j)
                     {
-                        submatrix[k][l] = matrix[k+1][l];
+                        submatrix[k][l] = m_elements[k+1][l];
                     }
 
                     else if (k >= i && l >= j)
                     {
-                        submatrix[k][l] = matrix[k+1][l+1];
+                        submatrix[k][l] = m_elements[k+1][l+1];
                     }
                 }
 
                 else if (k < i && l >= j)
                 {
-                    submatrix[k][l] = matrix[k][l+1];
+                    submatrix[k][l] = m_elements[k][l+1];
                 }
             }
         }
@@ -177,19 +190,19 @@ class Matrix
 
         if (rang == 1)
         {
-            return matrix[0][0];
+            return m_elements[0][0];
         }
         if (rang == 2)
         {
-            return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+            return m_elements[0][0] * m_elements[1][1] - m_elements[0][1] * m_elements[1][0];
         }
 
         else
         {
-            for (int i = 0; i < matrix.length; i++)
+            for (int i = 0; i < m_elements.length; i++)
             {
                 Matrix Submatrix = createSubmatrix(0,i);
-                det += matrix[0][i] * Math.pow(-1,i+1+1) * Submatrix.determinant();
+                det += m_elements[0][i] * Math.pow(-1,i+1+1) * Submatrix.determinant();
             }
         }
         return det;
@@ -211,7 +224,7 @@ class Matrix
             {
                 for (int j = 0; j < n; j++)
                 {
-                    cofacotorMatrix.matrix[i][j] = Math.pow(-1,i+j+2) * createSubmatrix(i,j).determinant();
+                    cofacotorMatrix.m_elements[i][j] = Math.pow(-1,i+j+2) * createSubmatrix(i,j).determinant();
                 }
             }
 
@@ -221,7 +234,7 @@ class Matrix
         }
     }
     
-    public Matrix matrixInvert()                                       //finally calculation the inverse matrix
+    public Matrix Inverse()                                       //finally calculation the inverse matrix
     {
         double det = determinant();
 
@@ -230,6 +243,7 @@ class Matrix
             System.out.println("Error! The inverse matrix doesn't exist");
             return E(0);
         }
+
         else
         {
             Matrix Inverse = matrixScalar(createAdjunkte(), 1.0/determinant());
