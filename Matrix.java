@@ -72,6 +72,12 @@ class Matrix
 
         return temp;
     }
+
+    public boolean isRectangular()          //checking whether a matrix always hast the same amount of columns (mathematically correct matrix)
+    {
+        boolean temp = true;
+
+        for(int i = 0; i < m_elements.length-1; i++)
         {
             if (m_elements[i].length != m_elements[i+1].length)
             {
@@ -132,6 +138,33 @@ class Matrix
         }
 
         return result;
+    }
+
+    public Matrix matrixMultiplication(Matrix B)           //matrix multiplication
+    {
+        if (!isRectangular() || !B.isRectangular() || m_elements[0].length != B.m_elements.length)
+        {
+            System.out.println("Error! Matrix Multiplication cannot be executed");
+            return E(0);
+        }
+
+        else
+        {
+            Matrix result = new Matrix(new double[m_elements.length][B.m_elements[0].length]);    //currently assueming it is a mathematically correct matrix
+
+            for (int i = 0; i < m_elements.length; i++)
+            {
+                for (int j = 0; j < B.m_elements[i].length; j++)
+                {
+                    for (int k = 0; k < m_elements[i].length; k++)
+                    {
+                        result.m_elements[i][j] += m_elements[i][k] * B.m_elements[k][j];
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 
     public Matrix matrixTranspose(Matrix A)                          //transposing a matrix
