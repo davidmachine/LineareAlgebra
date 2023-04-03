@@ -25,6 +25,16 @@ class Matrix
         }
     }
 
+    public void set_m_elements(double[][] matrix)    //setter
+    {
+        m_elements = matrix;
+    }
+
+    public double[][] get_m_elements()          //getter
+    {
+        return m_elements;
+    }
+
     public static Matrix E(int n)                        //creating the identity matrix of rank n
     {
         Matrix E = new Matrix(n);
